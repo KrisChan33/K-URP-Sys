@@ -12,7 +12,11 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole(['admin', 'employee']);
+        if ($user->hasRole('employee') && $user->hasPermissionTo('viewAny')) {
+            return true;
+        }
+        return false;
+        // return $user->hasRole(['admin', 'employee']) && $user->hasPermissionTo('viewAny');
     }
 
     /**
@@ -20,7 +24,10 @@ class UserPolicy
      */
     public function view(User $user): bool
     {
-        return $user->hasRole(['admin', 'employee']);
+        if ($user->hasPermissionTo('view')) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -28,7 +35,10 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return $user->hasRole(['admin', 'employee']);
+        if ($user->hasPermissionTo('create')) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -36,7 +46,10 @@ class UserPolicy
      */
     public function update(User $user): bool
     {
-        return $user->hasRole(['admin', 'employee']);
+        if ($user->hasPermissionTo('update')) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -44,12 +57,19 @@ class UserPolicy
      */
     public function delete(User $user): bool
     {
-        return $user->hasRole(['admin', 'employee']);
+        if ($user->hasPermissionTo('delete')) {
+            return true;
+        }
+        return false;
     }
 
     public function deleteAny(User $user): bool
     {
-        return $user->hasRole(['admin', 'employee']);
+        if ($user->hasPermissionTo('deleteAny')) {
+
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -57,7 +77,11 @@ class UserPolicy
      */
     public function restore(User $user): bool
     {
-        return $user->hasRole(['admin']);
+        if ($user->hasPermissionTo('restore')) {
+
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -65,6 +89,10 @@ class UserPolicy
      */
     public function forceDelete(User $user): bool
     {
-        return $user->hasRole(['admin']);
+        if ($user->hasPermissionTo('forceDelete')) {
+
+            return true;
+        }
+        return false;
     }
 }

@@ -13,7 +13,10 @@ class RolePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasRole('admin');
+        if ($user->hasPermissionTo('viewAny')) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -21,31 +24,46 @@ class RolePolicy
      */
     public function view(User $user): bool
     {
-        return $user->hasRole('admin');
+        if ($user->hasPermissionTo('view')) {
+            return true;
+        }
+        return false;
     }
+
 
     /**
      * Determine whether the user can create models.
      */
     public function create(User $user): bool
     {
-        return $user->hasRole(['admin']);
+        if ($user->hasPermissionTo('create')) {
+            return true;
+        }
+        return false;
     }
+
 
     /**
      * Determine whether the user can update the model.
      */
     public function update(User $user): bool
     {
-        return $user->hasRole(['admin']);
+        if ($user->hasPermissionTo('update')) {
+            return true;
+        }
+        return false;
     }
+
 
     /**
      * Determine whether the user can delete the model.
      */
     public function delete(User $user): bool
     {
-        return $user->hasRole(['admin']);
+        if ($user->hasPermissionTo('delete')) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -53,7 +71,10 @@ class RolePolicy
      */
     public function restore(User $user): bool
     {
-        return $user->hasRole(['admin']);
+        if ($user->hasPermissionTo('viewAny')) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -61,6 +82,9 @@ class RolePolicy
      */
     public function forceDelete(User $user): bool
     {
-        return $user->hasRole(['admin']);
+        if ($user->hasPermissionTo('foreDelete')) {
+            return true;
+        }
+        return false;
     }
 }
