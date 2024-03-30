@@ -28,8 +28,4 @@ To use K-URP-Sys in your application, follow these steps:
 2. Configure the package settings in your `config` files.
 3. Use the provided APIs and interfaces to manage roles and permissions for your users.
 
-## PermissionResource.php
-
-The `PermissionResource.php` file is responsible for transforming the `Permission` model into an array for API responses. The `form` method within this file defines the form structure for creating or editing permissions. It includes a text input for the 'name' attribute, which is required and must be unique.
-
 Feel free to customize and extend K-URP-Sys to meet your application's specific requirements. If you have any questions or need further assistance, please let us know.
