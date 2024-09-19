@@ -20,7 +20,14 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         //Create Users
+        
         $user = User::factory()->create([
+            'name' => 'Super admin',
+            'email' => 'superadmin@gmail.com',
+            'password' => bcrypt('123'),
+        ]);
+        
+        $user0 = User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('123'),
@@ -39,7 +46,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         //Create Roles
-        $role = Role::create(['name' => 'admin']);
+        $role = Role::create(['name' => 'superadmin']);
+        $role0 = Role::create(['name' => 'admin']);
         $role1 = Role::create(['name' => 'employee']);
         $role2 = Role::create(['name' => 'officer']);
 
@@ -57,10 +65,14 @@ class DatabaseSeeder extends Seeder
 
         //Assign Role to User
         $user->assignRole($role);
+        $user->assignRole($role0);
         $user1->assignRole($role1);
         $user2->assignRole($role2);
 
         //Assign Permission to the user
         $user->givePermissionTo([$permission, $permission1, $permission2, $permission3, $permission4, $permission5, $permission6, $permission7, $permission8, $permission9]);
+        $user0->givePermissionTo([$permission, $permission1, $permission2, $permission3, $permission4, $permission5, $permission6, $permission7, $permission8, $permission9]);
+        $user1->givePermissionTo([$permission6, $permission7]);
+        $user2->givePermissionTo([$permission6, $permission7]);
     }
 }
